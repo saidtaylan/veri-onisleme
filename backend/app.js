@@ -2,8 +2,15 @@ import express from "express";
 import csv from "csvtojson";
 import cors from "cors";
 import { createObjectCsvWriter } from "csv-writer";
-import arithmeticAvg from "./utils/arithmeticAvg.js"
-import findMedian from "./utils/median.js"
+import arithmeticAvg from "./utils/arithmeticAvg.js";
+import findMedian from "./utils/median.js";
+import modeFind from "./utils/mode.js";
+import findIQR from "./utils/iqr.js";
+import findOutliers from "./utils/outliers.js";
+import findFiveNumber from "./utils/fiveNumber.js";
+import findVariance from "./utils/variance.js";
+import findStandardDeviation from "./utils/standardDeviation.js";
+import findFrequencies from "./utils/frequency.js";
 const app = express();
 app.use(cors());
 app.options("*", cors());
@@ -237,11 +244,10 @@ app.get("/save-missing-data-complete", (req, res) => {
     (async function () {
       await csvWriter.writeRecords(datas);
     })();
+  } catch (err) {
+    res.end(`${err}`);
   }
-  catch(err) {
-    res.end(`${err}`)
-  }
-  res.end('1')
+  res.end("1");
 });
 
 app.get("/missing-data-form", (req, res) => {
@@ -251,17 +257,67 @@ app.get("/missing-data-form", (req, res) => {
 });
 
 app.get("/arithmetic-avg", (req, res) => {
-  let columnAvgs = arithmeticAvg(datas)
-  res.writeHead(200, {'Content-Type': 'Application/json'})
-  res.write(JSON.stringify(columnAvgs))
-  res.end()
-})
+  let columnAvgs = arithmeticAvg(datas);
+  res.writeHead(200, { "Content-Type": "Application/json" });
+  res.write(JSON.stringify(columnAvgs));
+  res.end();
+});
 
 app.get("/find-median", (req, res) => {
-  let columnsMedian = findMedian(datas)
-  res.writeHead(200, {'Content-Type': 'Application/json'})
-  res.write(JSON.stringify(columnsMedian))
-  res.end()
+  let columnsMedian = findMedian(datas);
+  res.writeHead(200, { "Content-Type": "Application/json" });
+  res.write(JSON.stringify(columnsMedian));
+  res.end();
+});
+
+app.get("/find-mode", (req, res) => {
+  let mode = modeFind(datas);
+  res.writeHead(200, { "Content-Type": "Application/json" });
+  res.write(JSON.stringify(mode));
+  res.end();
+});
+
+app.get("/get-iqr", (req, res) => {
+  let iqr = findIQR(datas);
+  res.writeHead(200, { "Content-Type": "Application/json" });
+  res.write(JSON.stringify(iqr));
+  res.end();
+});
+
+app.get("/find-outliers", (req, res) => {
+  let outliers = findOutliers(datas);
+  res.writeHead(200, { "Content-Type": "Application/json" });
+  res.write(JSON.stringify(outliers));
+  res.end();
+});
+
+app.get("/get-five-number", (req, res) => {
+  let fiveNumber = findFiveNumber(datas);
+  res.writeHead(200, { "Content-Type": "Application/json" });
+  res.write(JSON.stringify(fiveNumber));
+  res.end();
+});
+
+app.get("/find-variance", (req, res) => {
+  let variances = findVariance(datas);
+  res.writeHead(200, { "Content-Type": "Application/json" });
+  res.write(JSON.stringify(variances));
+  res.end();
+});
+
+app.get("/standard-deviation", (req, res) => {
+  let stdDeviations = findStandardDeviation(datas);
+  res.writeHead(200, { "Content-Type": "Application/json" });
+  res.write(JSON.stringify(stdDeviations));
+  res.end();
+});
+
+app.get("/get-frequency", (req, res) => {
+  let freqs = findFrequencies(datas)
+  res.writeHead(200, { "Content-Type": "Application/json" });
+  res.write(JSON.stringify(freqs));
+  res.end();
+
 })
 
 app.listen(8000);

@@ -155,7 +155,9 @@ const arithmeticAvg = (datas) => {
       ).toFixed(4);
     }
   }
-  console.log(columnAvgs);
+  delete columnAvgs["Time Played"]
+  delete columnAvgs.Date
+  delete columnAvgs["Mental State"]
   return columnAvgs;
 };
 

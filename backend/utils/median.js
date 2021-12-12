@@ -112,6 +112,9 @@ const findMedian = (datas) => {
       }
     }
   }
+  delete columnsMedian["Time Played"]
+  delete columnsMedian.Date
+  delete columnsMedian["Mental State"]
   return columnsMedian
 };
 
