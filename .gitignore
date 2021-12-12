@@ -1,6 +1,6 @@
 backend/node_modules/
 frontend/node_modules/
 frontend/yarn.lock
-.vscode/
+./.vscode/
 frontend/.vscode/
 backend/yarn.lock
