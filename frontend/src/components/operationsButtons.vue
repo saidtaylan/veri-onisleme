@@ -66,6 +66,9 @@
         Standart Sapma
       </button>
       <hr />
+      <h4 class="text-center text-info">
+        Grafiklerde görmek istediğiniz sütun isimlerini seçiniz:
+      </h4>
       <div class="row" style="justify-content: space-around">
         <div class="col-md-4 d-flex" style="justify-content: space-around">
           <span
@@ -87,10 +90,12 @@
           </span>
         </div>
       </div>
-      <button class="btn btn-success" @click="boxPlot()">Kutu Grafiği</button>
-      <button class="btn btn-warning" @click="findFrequency()">
-        Frekans Tabloları
-      </button>
+      <div class="d-flex" style="justify-content:space-around; ">
+        <button class="btn btn-success" @click="boxPlot()">Kutu Grafiği</button>
+        <button class="btn btn-warning" @click="findFrequency()">
+          Frekans Tabloları
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -210,6 +215,6 @@ const findFrequency = async () => {
 
 const boxPlot = () => {
   emit("update:drawBoxPlot", true);
-  emit('freqCols', freqCols.value)
+  emit("freqCols", freqCols.value);
 };
 </script>
