@@ -37,7 +37,7 @@
 - Veri setindeki eksiklikleri doldurduktan sonra hemen kaydetmez. Eğer **Kaydet** butonuna basılırsa verilerin doldurulmuş halini, eski veri setinin üzerine yazmadan farklı bir dosya olarak kaydeder ki her girişte yeniden kullanılabilsin.
 - Veri setinin aritmetik ortalaması, medyanının... hesaplanması için herbirinin ayrı butonu vardır ve tıklandığında ekranda tablo şeklinde değeleri listeleyecektir.
 
-## TODOS
+## TODOS (En kısa zamanda yapmaya çalışacağım.)
 
 - [ ] Backend: Klasör yapısı düzenlenip nesne yönelimli yapıya geçiş yapılacak
 - [ ] Frontend: Aritmetik operasyonların componentleri slot olarak tek bir table yapısına geçirilecek.
